@@ -1,0 +1,35 @@
+{% extends 'payment/base.html'%}
+
+
+{% block title %}
+<title>Orders</title>
+{% endblock title %}
+
+{% block body %}
+
+<h3>Orders List</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Paid</th>
+            <th scope="col">Paid Amount</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in orders %}
+        <tr>
+            <th scope="row">{{order.id}} </th>
+            <td>{{order.name}}</td>
+            <td>{{order.is_paid}}</td>
+            <td>{{order.paid_amount}}</td>
+            <td><a href="{% url 'order_checkout' order.id %}"><button class="btn btn-primary">Check Out</button></a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock body %}
